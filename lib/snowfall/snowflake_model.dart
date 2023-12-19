@@ -58,7 +58,7 @@ class SnowflakeModel {
           curve: Curves.easeIn),
     ]); */
     animationProgress = AnimationProgress(duration: duration, startTime: time);
-    size = 20 + random.nextDouble() * 100 * scale;
+    size = random.nextDouble() * 100 * scale;
     drawPath();
   }
 
@@ -71,9 +71,9 @@ class SnowflakeModel {
     int iterationsTotal = 1;
     // we calculate the total number of iterations
     // based on the snowflake's size
-    if (size > 40) {
-      iterationsTotal += (size) ~/ 25;
-    }
+    // if (size > 40) {
+    iterationsTotal += (size) ~/ 25;
+    // }
     _path = Path();
     if (cachedFlakes[iterationsTotal] == null) {
       double down = (sideLength / 2) * math.tan(math.pi / 6);
