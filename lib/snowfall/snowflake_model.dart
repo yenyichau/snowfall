@@ -29,11 +29,12 @@ class SnowflakeModel {
 
   Animatable? tween;
   double size = 0.0;
+  double scale = 1.0;
   AnimationProgress? animationProgress;
   math.Random random;
   Path? _path;
 
-  SnowflakeModel(this.random) {
+  SnowflakeModel(this.random, this.scale) {
     restart();
   }
 
@@ -57,7 +58,7 @@ class SnowflakeModel {
           curve: Curves.easeIn),
     ]); */
     animationProgress = AnimationProgress(duration: duration, startTime: time);
-    size = 20 + random.nextDouble() * 100;
+    size = 20 + random.nextDouble() * 100 * scale;
     drawPath();
   }
 

@@ -9,10 +9,12 @@ class Snowflakes extends StatefulWidget {
   final int numberOfSnowflakes;
   final Color color;
   final int alpha;
+  final double scale;
   const Snowflakes(
       {required this.numberOfSnowflakes,
       required this.color,
       required this.alpha,
+      required this.scale,
       Key? key})
       : super(key: key);
 
@@ -28,7 +30,7 @@ class _SnowflakesState extends State<Snowflakes> {
   @override
   void initState() {
     List.generate(widget.numberOfSnowflakes, (index) {
-      flakes.add(SnowflakeModel(random));
+      flakes.add(SnowflakeModel(random, widget.scale));
     });
     super.initState();
   }

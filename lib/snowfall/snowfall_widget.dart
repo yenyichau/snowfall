@@ -6,12 +6,14 @@ class SnowfallWidget extends StatelessWidget {
   final Color color;
   final int numberOfSnowflakes;
   final int alpha;
+  final double scale;
   const SnowfallWidget(
       {Key? key,
       required this.child,
       this.numberOfSnowflakes = 30,
       this.color = Colors.white,
-      this.alpha = 180})
+      this.alpha = 180,
+      this.scale = 1.0})
       : super(key: key);
 
   @override
@@ -21,7 +23,8 @@ class SnowfallWidget extends StatelessWidget {
               child: Snowflakes(
                   numberOfSnowflakes: numberOfSnowflakes,
                   color: color,
-                  alpha: alpha)),
+                  alpha: alpha,
+                  scale: scale)),
           Positioned.fill(child: child),
         ],
       );
