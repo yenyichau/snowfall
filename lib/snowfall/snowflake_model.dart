@@ -42,12 +42,12 @@ class SnowflakeModel {
     _path = null;
     final startPosition = Offset(-0.2 + 1.4 * random.nextDouble(), -0.2);
     final endPosition = Offset(-0.2 + 1.4 * random.nextDouble(), 1.2);
-    final duration = Duration(seconds: 5, milliseconds: random.nextInt(10000));
+    final duration = Duration(seconds: 15, milliseconds: random.nextInt(10000));
     tween = MultiTween<AniProps>()
       ..add(AniProps.X, Tween(begin: startPosition.dx, end: endPosition.dx),
           duration, Curves.easeInOutSine)
       ..add(AniProps.Y, Tween(begin: startPosition.dy, end: endPosition.dy),
-          duration, Curves.easeIn);
+          duration, Curves.easeInOutSine);
 
     /* tween = MultiTrackTween([
       Track("x").add(
@@ -58,7 +58,7 @@ class SnowflakeModel {
           curve: Curves.easeIn),
     ]); */
     animationProgress = AnimationProgress(duration: duration, startTime: time);
-    size = random.nextDouble() * 100 * scale;
+    size = 20 + random.nextDouble() * 100;
     drawPath();
   }
 
@@ -71,9 +71,9 @@ class SnowflakeModel {
     int iterationsTotal = 1;
     // we calculate the total number of iterations
     // based on the snowflake's size
-    // if (size > 40) {
+    if (size > 40) {
     iterationsTotal += (size) ~/ 25;
-    // }
+    }
     _path = Path();
     if (cachedFlakes[iterationsTotal] == null) {
       double down = (sideLength / 2) * math.tan(math.pi / 6);
@@ -126,7 +126,7 @@ class SnowflakeModel {
     // in radians that is 6.28319
     m.setRotationZ(random.nextDouble() * 6.28319);
     num scaleTo = size / sideLength;
-    m.scale(scaleTo);
+    m.scale(scaleTo * scale);
     List<double> list = m.storage.toList();
     _path = _path!.transform(Float64List.fromList(list));
   }
